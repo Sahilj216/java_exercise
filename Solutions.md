@@ -62,3 +62,101 @@
     }
 
 ```
+
+# Question 3  Write a java program to show following menu to the user: Menu 1. Calculate Area of Circle 2. Calculate Circumference of a Circle 3. Exit. Choose an option (1-3): Take radius as user input. Hint: Use Switch statement to act on the menu. Also area and circumference methods should be static
+
+# Answer 3
+
+```java
+    import java.util.Scanner;
+
+    public class MenuClass {
+
+        public static void main(String[] agrs) {
+            Scanner inp = new Scanner(System.in);
+            System.out.println("1. Calculate Area of Circle");
+            System.out.println("2. Calculate Circumference of Circle");
+            System.out.println("3. Exit");
+            System.out.print("Choose option (1-3): ");
+            int val = inp.nextInt();
+            if (val == 3) {
+                System.out.println("Exit Program");
+                inp.close();
+                return;
+            }
+
+            double radius;
+
+            do {
+                System.out.print("Enter value of radius: ");
+                if (inp.hasNextDouble()) {
+                    radius = inp.nextDouble();
+                    break;
+                } else {
+                    System.out.println("Invalid Input please enter a number.");
+                    inp.next();
+                }
+            } while (true);
+
+            switch (val) {
+                case 1:
+                    System.out.printf("Area of Circle is : %.3f", calArea(radius));
+                    System.out.println();
+                    break;
+                case 2:
+                    System.out.printf("Circumference of Circle is : %.3f", calCircumference(radius));
+                    System.out.println();
+                    break;
+            }
+
+            inp.close();
+        }
+
+        public static double calCircumference(double radius) {
+            return Math.PI * radius;
+        }
+
+        public static double calArea(double radius) {
+            return Math.PI * radius * radius;
+        }
+    }
+```
+
+# Question 4 Create a two dimensional array of integers and display: 1. sum of all elements of each column 2. sum of all elements of each row
+
+# Answer 4
+
+```java
+    public class TwoD {
+
+      public static void main(String[] agrs) {
+        int[][] twoD = {{2, 3, 4}, {5, 4, 2}, {10, 3, 5}};
+        int row = twoD.length;
+        int col = twoD[0].length;
+        colSum(twoD, row, col);
+        rowSum(twoD, row, col);
+      }
+
+      public static void colSum(int[][] arr, int row, int col) {
+        for (int i = 0; i < col; i++) {
+          int sum = 0;
+          for (int j = 0; j < row; j++) {
+            sum += arr[j][i];
+          }
+          System.out.printf("Sum of %d column elements : %d", i + 1, sum);
+          System.out.println();
+        }
+      }
+
+      public static void rowSum(int[][] arr, int row, int col) {
+        for (int i = 0; i < row; i++) {
+          int sum = 0;
+          for (int j = 0; j < col; j++) {
+            sum += arr[i][j];
+          }
+          System.out.printf("Sum of %d row elements : %d", i + 1, sum);
+          System.out.println();
+        }
+      }
+    }
+```
