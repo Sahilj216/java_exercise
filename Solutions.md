@@ -382,9 +382,54 @@ public class MultiExcep {
 # Question 8 WAP to produce NoClassDefFoundError and ClassNotFoundException exception.
 # Answer 8
 
+### ClassNotFoundException (Checked Exception)
+
+Occur when trying to load a class at runtime using Class.fromName() and it does not exist
+
 ```java
 
+public class CNFE {
+    public static void main(String[] args) {
+        try {
+            // Trying to load a non-existent class
+            Class.forName("com.example.RandomClass");
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+}
+
 ```
+
+### NoClassDefFoundError (Unchecked Error)
+
+Occur when class was available at compile time but not at runtime
+
+```java
+public class Cat {
+
+    public void display() {
+        System.out.println("Cat Class");
+    }
+}
+
+// another file 
+public class NoClass {
+    public static void main(String[] args) {
+        Cat b = new Cat();
+        b.display();
+    }
+}
+
+```
+Now do `javac Cat.java NoClass.java`
+
+now delete Cat.class file
+
+run `java NoClass`
+
+it will throw error 
+
 # Question 9 Create a custom exception that do not have any stack trace.
 
 #  Answer 9
